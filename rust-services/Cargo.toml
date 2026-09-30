@@ -1,0 +1,7 @@
+[workspace]
+members = [
+    "order-matching-engine",
+    "market-data-service",
+    "shared"
+]
+resolver = "2"

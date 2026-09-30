@@ -1,0 +1,44 @@
+{
+  "name": "trading-prediction-platform",
+  "version": "1.0.0",
+  "description": "Trading prediction platform with React, Node.js, and Rust",
+  "main": "server.js",
+  "scripts": {
+    "start": "concurrently \"npm run start:rust:matching\" \"npm run start:rust:market\" \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "start:backend": "node server.js",
+    "start:frontend": "npx http-server -p 3001 -c-1",
+    "start:rust": "concurrently \"npm run start:rust:matching\" \"npm run start:rust:market\"",
+    "start:rust:matching": "cargo run --manifest-path=rust-services/Cargo.toml --bin order-matching-engine",
+    "start:rust:market": "cargo run --manifest-path=rust-services/Cargo.toml --bin market-data-service",
+    "dev:backend": "nodemon server.js",
+    "dev:frontend": "npx http-server -p 3001 -c-1 -o frontend.html",
+    "dev:frontend:live": "npx live-server --port=3001 --no-browser",
+    "install:all": "npm install",
+    "test": "npm run test:rust",
+    "test:rust": "cargo test --manifest-path=rust-services/Cargo.toml --workspace"
+  },
+  "dependencies": {
+    "@sendgrid/mail": "^8.1.6",
+    "axios": "^1.13.6",
+    "bcryptjs": "^2.4.3",
+    "chart.js": "^4.5.1",
+    "cloudinary": "^2.9.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^9.2.4",
+    "mongoose-url-slugs": "^1.0.2",
+    "paytmchecksum": "^1.5.1",
+    "react-chartjs-2": "^5.3.1",
+    "uuid": "^9.0.0",
+    "validator": "^13.15.26",
+    "ws": "^8.14.2"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "http-server": "^14.1.1",
+    "live-server": "^1.2.2",
+    "nodemon": "^3.0.1"
+  }
+}
